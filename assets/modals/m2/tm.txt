@@ -1,0 +1,79 @@
+Turing Machine Website: http://morphett.info/turing/turing.html
+
+Make sure to change the initial state to INIT
+
+
+
+
+; Program to count the number of a's in a string.
+
+INIT a A r MRIG
+MRIG a a r MRIG
+MRIG b b r MRIG
+MRIG _ _ r NEWW
+NEWW _ 1 * SLEF
+NEWW 1 1 r JINC
+
+JINC _ 1 * SLEF
+JINC 1 1 r JINC
+
+SLEF 1 1 l NLEF
+NLEF 1 1 l NLEF
+NLEF _ _ l ALEF
+ALEF a a l ALEF
+ALEF b b l ALEF
+ALEF A a r INIT
+
+INIT b b r INIT
+INIT _ _ * ACC
+
+
+
+
+
+
+; Program to check that a string has two repeating words consisting of a's and b's.
+
+INIT a A r MRIG
+MRIG a a r MRIG
+MRIG b b r MRIG
+MRIG _ _ r NWRI
+NWRI a A * CLEF
+NWRI A A r NWRI
+NWRI _ _ * REJ
+NWRI B B r NWRI
+NWRI b b * REJ
+CLEF a a l REJ
+CLEF A A l CLEF
+CLEF B B l CLEF
+CLEF _ _ l SLEF
+SLEF a a l SLEF
+SLEF b b l SLEF
+SLEF A a r INIT
+
+INIT b B r BRIG
+BRIG b b r BRIG
+BRIG a a r BRIG
+BRIG _ _ r BWRI
+BWRI a a r REJ
+BWRI A A r BWRI
+BWRI B B r BWRI
+BWRI _ _ * REJ
+BWRI b B * BLEF
+BLEF A A l BLEF
+BLEF B B l BLEF
+BLEF b b l REJ
+BLEF a a l REJ
+BLEF _ _ l BSLF
+BSLF a a l BSLF 
+BSLF b b l BSLF
+BSLF B b r INIT
+
+
+
+INIT _ _ r FIXA
+FIXA A a r FIXA
+FIXA B b r FIXA
+FIXA a a * REJ
+FIXA b b * REJ
+FIXA _ _ * ACC

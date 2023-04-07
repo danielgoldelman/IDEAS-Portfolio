@@ -1,0 +1,196 @@
+Picobot Website: https://www.cs.hmc.edu/picobot/
+
+###########################################################
+#	
+# Daniel Goldelman (dgoldelman@wesleyan.edu)
+# September 6, 2019
+# A Picobot program to clean the rectangular room with no objects present
+#
+###########################################################
+
+#Go all the way north until it reaches a wall
+0 x*** -> N 0
+0 N*** -> X 1
+
+#Go all the way west until it reaches a wall
+1 **x* -> W 1
+1 **W* -> S 2
+
+#Go all the way south until it reaches a wall, check if there is a space to the right
+2 ***x -> S 2
+2 ***S -> E 3
+
+#Go all the way north until it reaches a wall, check if there is a space to the right
+3 x*** -> N 3
+3 N*** -> E 2
+
+
+
+###########################################################
+#	
+# Daniel Goldelman (dgoldelman@wesleyan.edu)
+# September 7, 2019
+# A Picobot program to clean the rectangular room with a rectangular object
+#
+###########################################################
+
+# Go West until hitting a wall 
+0 **x* -> W 0
+0 **W* -> X 1
+
+# Go North until hitting a wall
+1 x*** -> N 1
+1 N*** -> X 2
+
+# Go West until hitting a wall (second time)
+2 **x* -> W 2
+2 **W* -> X 3
+
+# Go North until hitting a wall (second time)
+3 x*** -> N 3
+3 N*** -> X 4
+
+# Go East until hitting a wall
+4 *x** -> E 4
+4 xExS -> x 6
+4 xExx -> x 5
+4 NE** -> S 5
+
+# Go West until hitting a wall
+5 **x* -> W 5
+5 **W* -> S 4
+
+# Go North until hitting a wall
+6 x*** -> N 6
+6 NExx -> W 7
+6 Nxxx -> W 7
+6 NxWx -> E 8
+
+# Go South until hitting a wall
+7 ***x -> S 7
+7 xxxS -> W 6
+
+# Go South until hitting a wall
+8 ***x -> S 8
+8 xxxS -> E 9
+
+# Go North until hitting a wall
+9 x*** -> N 9
+9 NExx -> E 8
+9 Nxxx -> E 8
+
+
+
+##########################################################
+#	
+# Daniel Goldelman (dgoldelman@wesleyan.edu)
+# September 7, 2019
+# A Picobot program to clean the diamond room
+#
+###########################################################
+
+# Go North until hitting a wall 
+0 x*** -> N 0
+0 N*** -> x 1
+
+# [In the North corner of the diamond] Go West until hitting walls to the North and West
+1 **x* -> W 1
+1 NxWx -> E 0
+1 NEWx -> S 2
+1 NxWS -> E 26
+26 xxxx -> N 0
+
+# Go East until hitting a wall, then move South one unit
+2 *x** -> E 2
+2 *E** -> S 3
+
+# [In the East corner of the diamond] Go East until hitting a wall, then move South one unit
+3 *x** -> E 3
+3 NExx -> x 2
+3 NExS -> W 4
+
+# Go South until hitting a wall, then move West one unit
+4 ***x -> S 4
+4 xExS -> W 5
+
+# [In the South corner of the diamond] Go South until hitting a wall, then move North one unit
+5 ***x -> S 5
+5 xExS -> W 4
+5 xEWS -> N 6
+
+# Go North one unit, then East one unit
+4 xEWS -> N 7
+7 xxxx -> W 8
+
+# Go North one unit, then East one unit
+8 xxWS -> N 8
+8 xxxx -> W 8
+
+# [In the West corner of the diamond] move West then North
+8 NxWS -> E 9
+
+# [Second time in the north corner of the diamond] Go North one unit, then East one unit
+9 xxxx -> N 10
+10 NxWx -> E 9
+10 NEWx -> S 11
+10 xxxx -> S 11
+
+# & Go South into the South corner of the diamond
+11 xxxx -> S 11
+11 xEWS -> x 12
+11 xExS -> n 12
+11 NExx -> S 10
+
+# Go North one unit
+12 x*** -> N 13
+
+# Go East one unit
+13 xxxx -> E 14
+13 NExx -> S 14
+14 xExS -> x 15
+14 xxxx -> x 15
+
+# Go North until a wall is hit, then move South one unit
+15 x*** -> N 15
+15 N*** -> S 16
+
+# Go East one unit [Ends up in East corner of the diamond]
+16 xxxx -> E 16
+16 NExx -> x 11
+16 NExS -> W 17
+
+# Go West into the Western Corner [Ends one unit East of the West corner of the diamond]
+17 NExS -> W 17
+17 xxxx -> W 17
+17 NxWS -> E 18
+
+# % Go North one unit
+18 xxxx -> N 18
+18 NEWx -> S 22
+
+# Go East until it hits a wall, then West one unit
+18 NxWx -> E 19
+19 xxxx -> E 19
+19 NExx -> W 20
+
+# Go North one unit, then West until it hits a wall, then repeat from %
+20 xxxx -> N 20
+20 NExx -> W 21
+21 xxxx -> W 21
+21 NxWx -> E 18
+
+# Go West one unit, then South one unit @
+22 xxxx -> W 22
+22 NxWx -> S 23
+
+# Go South until it hits a wall, then North one unit
+23 xxxx -> S 23
+23 xxWS -> N 24
+
+# Go West one unit
+24 xxxx -> W 25
+
+# Go North until it hits a wall, then go south one unit, then repeat from @
+25 xxWS -> N 25
+25 xxxx -> N 25
+25 NxWx -> S 22
