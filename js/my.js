@@ -7,5 +7,11 @@ window.addEventListener('DOMContentLoaded', event => {
             vids[i].width = "260";
             vids[i].height = "150";
         }
+
+        var frames = document.getElementsByTagName('iframe');
+        for (var i = 0; i < frames.length; i++) {
+            frames[i].width = "260";
+            frames[i].height = "150";
+        }
     }
 });
